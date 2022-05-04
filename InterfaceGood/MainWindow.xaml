@@ -1,0 +1,51 @@
+﻿<Window x:Class="InterfaceGood.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfaceGood"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DockPanel>
+            <WrapPanel DockPanel.Dock="Top">
+                <TextBlock Text="Rocket system"></TextBlock>
+            </WrapPanel>
+            <DockPanel DockPanel.Dock="Left" DataContext="VM_Rockets">
+                <ListView Name="lv_View" ItemsSource="{Binding Engines}" MinWidth="150" SelectedItem="{Binding SelectedEngine}" DockPanel.Dock="Top" Height="auto" >
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Type}" Margin="5" ></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" MaxHeight="100"  >
+                    <Image Name="ImName" Source="{Binding ImagePath }" MaxHeight="100" ></Image>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Heads"></TextBlock>
+                   <ListView DockPanel.Dock="Bottom" Name="lvHeads" MinHeight="30" ItemsSource="{Binding Heads}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Type}" Margin="5"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                  </ListView>
+                </StackPanel>
+            </DockPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Right" DataContext="Message">
+                <TextBox Name="tbInfo"  Text="{Binding Message}"></TextBox>
+                <TextBox Name="tbInfoTest"  Text="{Binding Name}"></TextBox>
+                <Button Name="btnSHow" Content="Show" Click="BtnSHow_Click"></Button>
+                <Button Content="start" Click="Button_Click"></Button>
+                <TextBox Name="tbTextbox" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </DockPanel>
+        
+        
+    </Grid>
+</Window>
